@@ -1,5 +1,8 @@
 jest.mock('request-promise-native')
 
+const tt = require('tinytime')
+const template = tt('{YYYY}-{Mo}-{DD} {H}:{mm}:{ss}')
+
 describe('hapi-rest-proxy', () => {
   const testDate = new Date(1494178965528)
   let server
@@ -177,7 +180,7 @@ describe('hapi-rest-proxy', () => {
             }
           )
             .then(() => {
-              expect(console.log).toHaveBeenCalledWith('2017-5-7 19:42:45 | GET | 200 | https://www.i-want-to-test.com/api')
+              expect(console.log).toHaveBeenCalledWith(`${template.render(new Date())} | GET | 200 | https://www.i-want-to-test.com/api`)
             })
         ))
       })
@@ -200,7 +203,7 @@ describe('hapi-rest-proxy', () => {
               expect(true).toBeFalsy()
             })
             .catch(() => {
-              expect(console.log).toHaveBeenCalledWith('2017-5-7 19:42:45 | GET | 404 | https://www.i-want-to-test.com/api')
+              expect(console.log).toHaveBeenCalledWith(`${template.render(new Date())} | GET | 404 | https://www.i-want-to-test.com/api`)
             })
         })
 
@@ -221,7 +224,7 @@ describe('hapi-rest-proxy', () => {
               expect(true).toBeFalsy()
             })
             .catch(() => {
-              expect(console.log).toHaveBeenCalledWith('2017-5-7 19:42:45 | GET | 500 | https://www.i-want-to-test.com/api')
+              expect(console.log).toHaveBeenCalledWith(`${template.render(new Date())} | GET | 500 | https://www.i-want-to-test.com/api`)
             })
         })
       })

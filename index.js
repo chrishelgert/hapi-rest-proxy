@@ -20,7 +20,7 @@ server.route({
   method: '*',
   path: '/',
   handler: async (request, reply) => {
-    const method = request.method.toUpperCase();
+    const method = request.method.toUpperCase()
 
     try {
       const result = await rp({

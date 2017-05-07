@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "start": "node index.js",
-    "test": "npm run lint",
+    "test": "npm run lint && jest",
     "lint": "standard --verbose | snazzy"
   },
   "author": "chrishelgert",
@@ -31,7 +31,16 @@
     "tinytime": "^0.2.5"
   },
   "devDependencies": {
+    "jest": "^19.0.2",
     "snazzy": "^7.0.0",
     "standard": "^10.0.2"
+  },
+  "jest": {
+    "collectCoverage": true
+  },
+  "standard": {
+    "env": {
+      "jest": true
+    }
   }
 }

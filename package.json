@@ -7,7 +7,9 @@
   "scripts": {
     "start": "node index.js",
     "test": "npm run lint && jest",
-    "lint": "standard --verbose | snazzy"
+    "lint": "standard --verbose | snazzy",
+    "docker:build": "docker build -t hapi-rest-proxy .",
+    "docker:start": "docker start -p 8080:8080 hapi-rest-proxy"
   },
   "author": "chrishelgert",
   "repository": {

@@ -1,0 +1,8 @@
+__tests__
+coverage
+node_modules
+.gitignore
+.travis.yml
+Dockerfile
+LICENSE.md
+README.md

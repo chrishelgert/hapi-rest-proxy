@@ -3,6 +3,26 @@ jest.mock('request-promise-native')
 const tt = require('tinytime')
 const template = tt('{YYYY}-{Mo}-{DD} {H}:{mm}:{ss}')
 
+const headers = {
+  accept: 'application/json',
+  'accept-encoding': 'gzip',
+  authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU3NzY1MjYyMmZjOGQyMTEwMDRiN2EzNCIsInNjb3BlIjoiYWRtaW4iLCJ1c2VybmFtZSI6Imdyb290IiwiaWF0IjoxNDk0MzUxMzIxLCJleHAiOjE0OTQ0Mzc3MjF9.vkBkTP3i0MceYjjPQUUZyNTyrpCuax2ZlHC_wGeq5aQ',
+  'content-type': 'application/json',
+  host: 'localhost:8080',
+  referer: 'http://localhost:8080/',
+  'user-agent': 'curl/7.51.0'
+}
+
+const expectedHeaders = {
+  accept: 'application/json',
+  'accept-encoding': undefined,
+  authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU3NzY1MjYyMmZjOGQyMTEwMDRiN2EzNCIsInNjb3BlIjoiYWRtaW4iLCJ1c2VybmFtZSI6Imdyb290IiwiaWF0IjoxNDk0MzUxMzIxLCJleHAiOjE0OTQ0Mzc3MjF9.vkBkTP3i0MceYjjPQUUZyNTyrpCuax2ZlHC_wGeq5aQ',
+  'content-type': 'application/json',
+  host: undefined,
+  referer: undefined,
+  'user-agent': 'curl/7.51.0'
+}
+
 describe('hapi-rest-proxy', () => {
   const testDate = new Date(1494178965528)
   let server
@@ -98,7 +118,8 @@ describe('hapi-rest-proxy', () => {
               {
                 method: 'get',
                 query: { url: 'https://www.i-want-to-test.com/api' },
-                payload: undefined
+                payload: undefined,
+                headers
               },
               () => {}
             )
@@ -106,7 +127,8 @@ describe('hapi-rest-proxy', () => {
                 expect(rp).toHaveBeenCalledWith({
                   method: 'GET',
                   uri: 'https://www.i-want-to-test.com/api',
-                  json: true
+                  json: true,
+                  headers: expectedHeaders
                 })
               })
           ))
@@ -116,7 +138,8 @@ describe('hapi-rest-proxy', () => {
               {
                 method: 'post',
                 query: { url: 'https://www.i-want-to-test.com/api' },
-                payload: { name: 'hapi-rest-proxy' }
+                payload: { name: 'hapi-rest-proxy' },
+                headers
               },
               () => {}
             )
@@ -125,7 +148,8 @@ describe('hapi-rest-proxy', () => {
                   method: 'POST',
                   uri: 'https://www.i-want-to-test.com/api',
                   body: { name: 'hapi-rest-proxy' },
-                  json: true
+                  json: true,
+                  headers: expectedHeaders
                 })
               })
           ))
@@ -135,7 +159,8 @@ describe('hapi-rest-proxy', () => {
               {
                 method: 'put',
                 query: { url: 'https://www.i-want-to-test.com/api/1' },
-                payload: { name: 'hapi-rest-proxy' }
+                payload: { name: 'hapi-rest-proxy' },
+                headers
               },
               () => {}
             )
@@ -144,7 +169,8 @@ describe('hapi-rest-proxy', () => {
                   method: 'PUT',
                   uri: 'https://www.i-want-to-test.com/api/1',
                   body: { name: 'hapi-rest-proxy' },
-                  json: true
+                  json: true,
+                  headers: expectedHeaders
                 })
               })
           ))
@@ -154,7 +180,8 @@ describe('hapi-rest-proxy', () => {
               {
                 method: 'delete',
                 query: { url: 'https://www.i-want-to-test.com/api/1' },
-                payload: undefined
+                payload: undefined,
+                headers
               },
               () => {}
             )
@@ -162,7 +189,8 @@ describe('hapi-rest-proxy', () => {
                 expect(rp).toHaveBeenCalledWith({
                   method: 'DELETE',
                   uri: 'https://www.i-want-to-test.com/api/1',
-                  json: true
+                  json: true,
+                  headers: expectedHeaders
                 })
               })
           ))

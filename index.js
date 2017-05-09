@@ -6,6 +6,13 @@ const tt = require('tinytime')
 const server = new Hapi.Server()
 const template = tt('{YYYY}-{Mo}-{DD} {H}:{mm}:{ss}')
 
+const overrideHeaders = {
+  accept: 'application/json',
+  'accept-encoding': undefined,
+  host: undefined,
+  referer: undefined
+}
+
 function log (method, statusCode, url) {
   // eslint-disable-next-line no-console
   console.log(`${template.render(new Date())} | ${method} | ${statusCode} | ${url}`)
@@ -22,12 +29,15 @@ server.route({
   handler: async (request, reply) => {
     const method = request.method.toUpperCase()
 
+    console.log(Object.assign({}, request.headers, overrideHeaders))
+
     try {
       const result = await rp({
         // hapi gives the request method in lowerCase
         method,
         uri: request.query.url,
         body: request.payload || undefined,
+        headers: Object.assign({}, request.headers, overrideHeaders),
         json: true
       })
 

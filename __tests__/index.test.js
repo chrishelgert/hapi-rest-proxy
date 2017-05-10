@@ -43,6 +43,7 @@ describe('hapi-rest-proxy', () => {
     server = {
       connection: jest.fn(),
       info: { uri: 'http://localhost:8080' },
+      register: jest.fn(),
       route: jest.fn(),
       start: jest.fn(() => new Promise((resolve, reject) => {
         if (startSuccess) {
@@ -111,6 +112,25 @@ describe('hapi-rest-proxy', () => {
           setup()
           handler = server.route.mock.calls[0][0].handler
         })
+
+        test('replies the information page, if called without url', () => (
+          handler(
+            {
+              method: 'get',
+              query: {},
+              payload: undefined,
+              headers
+            },
+            {
+              file: (template) => {
+                expect(template.indexOf('static/index.html') !== 1).toBeTruthy()
+              }
+            }
+          )
+            .then(() => {
+              expect(rp).not.toHaveBeenCalled()
+            })
+        ))
 
         describe('makes an request with method and payload to the server', () => {
           test('GET', () => (

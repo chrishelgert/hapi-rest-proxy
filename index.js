@@ -1,7 +1,9 @@
 const Hapi = require('hapi')
+const Inert = require('inert')
 const Boom = require('boom')
 const rp = require('request-promise-native')
 const tt = require('tinytime')
+const path = require('path')
 
 const server = new Hapi.Server()
 const template = tt('{YYYY}-{Mo}-{DD} {H}:{mm}:{ss}')
@@ -23,19 +25,24 @@ server.connection({
   routes: { cors: true }
 })
 
+server.register(Inert)
+
 server.route({
   method: '*',
   path: '/',
   handler: async (request, reply) => {
     const method = request.method.toUpperCase()
+    const uri = request.query.url
 
-    console.log(Object.assign({}, request.headers, overrideHeaders))
+    if (method === 'GET' && uri === undefined) {
+      return reply.file(path.join(__dirname, 'static', 'index.html'))
+    }
 
     try {
       const result = await rp({
         // hapi gives the request method in lowerCase
         method,
-        uri: request.query.url,
+        uri,
         body: request.payload || undefined,
         headers: Object.assign({}, request.headers, overrideHeaders),
         json: true

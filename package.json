@@ -1,6 +1,6 @@
 {
   "name": "hapi-rest-proxy",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
   "private": true,
@@ -9,12 +9,16 @@
     "test": "npm run lint && jest",
     "lint": "standard --verbose | snazzy",
     "docker:build": "docker build -t hapi-rest-proxy .",
-    "docker:start": "docker start -p 8080:8080 hapi-rest-proxy"
+    "docker:start": "docker start -p 8080:8080 hapi-rest-proxy",
+    "prepush": "npm test"
   },
   "author": "chrishelgert",
   "repository": {
     "type": "git",
     "url": "git@github.com/chrishelgert/hapi-rest-proxy.git"
+  },
+  "engines": {
+    "node": ">= 7.10.0"
   },
   "bugs": {
     "url": "https://github.com/chrishelgert/hapi-rest-proxy/issues"
@@ -34,6 +38,7 @@
     "tinytime": "^0.2.5"
   },
   "devDependencies": {
+    "husky": "^0.13.3",
     "jest": "^19.0.2",
     "snazzy": "^7.0.0",
     "standard": "^10.0.2"

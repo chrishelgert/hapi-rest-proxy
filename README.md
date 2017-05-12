@@ -1,4 +1,4 @@
-# [WIP] hapi-rest-proxy
+# hapi-rest-proxy
 
 [![Build Status](https://travis-ci.org/chrishelgert/hapi-rest-proxy.svg?branch=master)](https://travis-ci.org/chrishelgert/hapi-rest-proxy)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
@@ -17,6 +17,12 @@
 
 ### Docker
 
+#### Use existing image
+1. Grap the latest one `docker pull chrishelgert/hapi-rest-proxy`
+2. Start the container with `docker run -d -p 8080:8080 chrishelgert/hapi-rest-proxy`
+
+#### Build your image
+
 1. Grap the latest [release](https://github.com/chrishelgert/hapi-rest-proxy/releases)
 2. Build the image with
   * `npm run docker:build`
@@ -25,7 +31,7 @@
 3. Start the container with
   * `npm run docker:start`
   * `yarn docker:start`
-  * `docker run -d -p 8080:8080 hapi-rst-proxy`
+  * `docker run -d -p 8080:8080 hapi-rest-proxy`
 4. Make your REST calls over http://localhost:8080?url=YOUR_URL
 
 ## Example

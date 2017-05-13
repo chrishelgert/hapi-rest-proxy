@@ -20,6 +20,22 @@ function log (method, statusCode, url) {
   console.log(`${template.render(new Date())} | ${method} | ${statusCode} | ${url}`)
 }
 
+const getUrlFromQuery = (query) => {
+  const url = decodeURI(query.url)
+
+  if (Object.keys(query).length <= 1) {
+    return url
+  }
+
+  // if it is a url with searchParams, they get splitted so combine them again
+  const searchParams = Object.entries(query)
+    .filter(keyValue => keyValue[0] !== 'url')
+    .map(keyValue => keyValue.join('='))
+    .join('&')
+
+  return `${url}&${searchParams}`
+}
+
 server.connection({
   port: process.env.PORT || '8080',
   routes: { cors: true }
@@ -32,11 +48,12 @@ server.route({
   path: '/',
   handler: async (request, reply) => {
     const method = request.method.toUpperCase()
-    const uri = request.query.url
 
-    if (method === 'GET' && uri === undefined) {
+    if (method === 'GET' && request.query.url === undefined) {
       return reply.file(path.join(__dirname, 'static', 'index.html'))
     }
+
+    const uri = getUrlFromQuery(request.query)
 
     try {
       const result = await rp({
@@ -48,16 +65,16 @@ server.route({
         json: true
       })
 
-      log(method, 200, request.query.url)
+      log(method, 200, uri)
 
       reply(result)
     } catch (err) {
       if (err.statusCode) {
-        log(method, err.statusCode, request.query.url)
+        log(method, err.statusCode, uri)
 
-        return reply(Boom.create(err.statusCode, err.statusMessage, request.query.url))
+        return reply(Boom.create(err.statusCode, err.statusMessage, uri))
       } else {
-        log(method, 500, request.query.url)
+        log(method, 500, uri)
 
         reply(Boom.badImplementation)
       }

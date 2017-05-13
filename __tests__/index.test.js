@@ -133,6 +133,26 @@ describe('hapi-rest-proxy', () => {
         ))
 
         describe('makes an request with method and payload to the server', () => {
+          test('handles url params', () => (
+            handler(
+              {
+                method: 'get',
+                query: { url: 'https://www.i-want-to-test.com/api?json=true', limit: 1000 },
+                payload: undefined,
+                headers
+              },
+              () => {}
+            )
+              .then(() => {
+                expect(rp).toHaveBeenCalledWith({
+                  method: 'GET',
+                  uri: 'https://www.i-want-to-test.com/api?json=true&limit=1000',
+                  json: true,
+                  headers: expectedHeaders
+                })
+              })
+          ))
+
           test('GET', () => (
             handler(
               {

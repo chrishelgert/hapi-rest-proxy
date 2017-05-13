@@ -53,6 +53,11 @@ server.route({
       return reply.file(path.join(__dirname, 'static', 'index.html'))
     }
 
+    if (!request.query.url) {
+      log(method, 400, undefined)
+      return reply(Boom.badRequest('missing param url'))
+    }
+
     const uri = getUrlFromQuery(request.query)
 
     try {
@@ -76,7 +81,7 @@ server.route({
       } else {
         log(method, 500, uri)
 
-        reply(Boom.badImplementation)
+        reply(Boom.badImplementation())
       }
     }
   }

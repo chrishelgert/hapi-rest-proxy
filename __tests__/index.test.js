@@ -295,6 +295,27 @@ describe('hapi-rest-proxy', () => {
               expect(console.log).toHaveBeenCalledWith(`${template.render(new Date())} | GET | 500 | https://www.i-want-to-test.com/api`)
             })
         })
+
+        test('returns statusCode 400 if the url param is empty', () => {
+          setup()
+
+          return server.route.mock.calls[0][0].handler(
+            {
+              method: 'get',
+              query: { url: '' },
+              payload: undefined
+            },
+            (result) => {
+              expect(result).toBe(400)
+            }
+          )
+            .then(() => {
+              expect(true).toBeFalsy()
+            })
+            .catch(() => {
+              expect(console.log).toHaveBeenCalledWith(`${template.render(new Date())} | GET | 400 | undefined`)
+            })
+        })
       })
     })
   })

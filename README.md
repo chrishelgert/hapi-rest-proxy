@@ -1,5 +1,6 @@
 # hapi-rest-proxy
 
+[![GitHub release](https://img.shields.io/github/release/chrishelgert/hapi-rest-proxy.svg)](https://github.com/chrishelgert/hapi-rest-proxy/releases)
 [![Build Status](https://travis-ci.org/chrishelgert/hapi-rest-proxy.svg?branch=master)](https://travis-ci.org/chrishelgert/hapi-rest-proxy)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![Greenkeeper badge](https://badges.greenkeeper.io/chrishelgert/hapi-rest-proxy.svg)](https://greenkeeper.io/)

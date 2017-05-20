@@ -51,4 +51,4 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET
 
 ## LICENSE
 
-Copyright (c) 2017 Chris Helgert. See [License](./LICENSE) for details.
+Copyright (c) 2017 Chris Helgert. See [License](./LICENSE.md) for details.

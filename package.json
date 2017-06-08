@@ -35,7 +35,7 @@
     "inert": "^4.2.0",
     "request": "^2.81.0",
     "request-promise-native": "^1.0.3",
-    "tinytime": "^0.2.5"
+    "tinytime": "^0.2.6"
   },
   "devDependencies": {
     "husky": "^0.13.3",

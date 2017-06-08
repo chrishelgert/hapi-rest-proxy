@@ -343,6 +343,12 @@ boom@4.x.x, boom@^4.3.1:
   dependencies:
     hoek "4.x.x"
 
+boom@5.x.x:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/boom/-/boom-5.1.0.tgz#0308fa8e924cd6d42d9c3bf4883bdc98f0e71df8"
+  dependencies:
+    hoek "4.x.x"
+
 brace-expansion@^1.0.0:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.7.tgz#3effc3c50e000531fb720eaff80f0ae8ef23cf59"
@@ -1166,13 +1172,13 @@ handlebars@^4.0.3:
   optionalDependencies:
     uglify-js "^2.6"
 
-hapi@^16.1.1:
-  version "16.1.1"
-  resolved "https://registry.yarnpkg.com/hapi/-/hapi-16.1.1.tgz#0466db0703ba15cd00f07175ccf394d9cb56b1e0"
+hapi@^16.4.2:
+  version "16.4.2"
+  resolved "https://registry.yarnpkg.com/hapi/-/hapi-16.4.2.tgz#4276809618eca4def350e7dcae1f0bbdf8cd2519"
   dependencies:
     accept "2.x.x"
     ammo "2.x.x"
-    boom "4.x.x"
+    boom "5.x.x"
     call "4.x.x"
     catbox "7.x.x"
     catbox-memory "2.x.x"
@@ -1183,10 +1189,10 @@ hapi@^16.1.1:
     items "2.x.x"
     joi "10.x.x"
     mimos "3.x.x"
-    podium "^1.2.x"
+    podium "1.x.x"
     shot "3.x.x"
     statehood "5.x.x"
-    subtext "^4.3.x"
+    subtext "4.x.x"
     topo "2.x.x"
 
 har-schema@^1.0.5:
@@ -2278,7 +2284,7 @@ pluralize@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-1.2.1.tgz#d1a21483fd22bb41e58a12fa3421823140897c45"
 
-podium@^1.2.x:
+podium@1.x.x:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/podium/-/podium-1.2.5.tgz#87c566c2f0365bcf0a1ec7602c4d01948cdd2ad5"
   dependencies:
@@ -2731,15 +2737,15 @@ strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
-subtext@^4.3.x:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/subtext/-/subtext-4.4.0.tgz#0cf137965f47fe0e126a56a2488bb1c88dc93514"
+subtext@4.x.x:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/subtext/-/subtext-4.4.1.tgz#2fcec945de429283c3d18b151ff0fa1f1b87aec9"
   dependencies:
-    boom "4.x.x"
+    boom "5.x.x"
     content "3.x.x"
     hoek "4.x.x"
     pez "2.x.x"
-    wreck "10.x.x"
+    wreck "12.x.x"
 
 supports-color@^2.0.0:
   version "2.0.0"
@@ -2969,11 +2975,11 @@ wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
 
-wreck@10.x.x:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/wreck/-/wreck-10.0.0.tgz#98ab882f85e16a526332507f101f5a7841162278"
+wreck@12.x.x:
+  version "12.2.2"
+  resolved "https://registry.yarnpkg.com/wreck/-/wreck-12.2.2.tgz#e21823d34c36d672004eefa347ae8c4f6050e3db"
   dependencies:
-    boom "4.x.x"
+    boom "5.x.x"
     hoek "4.x.x"
 
 write@^0.2.1:

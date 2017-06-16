@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A proxy server for making REST calls to server without cors headers">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    
+
     <title>Hapi REST Proxy</title>
 
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
@@ -16,7 +16,7 @@
       .row {
         min-height: 100vh;
         align-items: center;
-      }  
+      }
     </style>
   </head>
   <body>
@@ -28,7 +28,7 @@
 
           <h2>Example:</h2>
           <p>if you want the latest exchange rate from fixer.io:</p>
-          <pre><code>curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET "http://localhost:8080?url=http://api.fixer.io/latest"</code></pre>
+          <pre><code>curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET "http://localhost:8080/?url=http://api.fixer.io/latest"</code></pre>
 
           <p>For further information look at the <a href="https://github.com/chrishelgert/hapi-rest-proxy">documentation</a>.</p>
         </div>

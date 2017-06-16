@@ -14,7 +14,7 @@
 1. Grap the latest [release](https://github.com/chrishelgert/hapi-rest-proxy/releases)
 2. set your port via process.env.PORT (default: 8080)
 3. Start the proxy with `yarn start` or `npm start`
-4. Make your REST calls over http://localhost:8080?url=YOUR_URL
+4. Make your REST calls over http://localhost:8080/?url=YOUR_URL
 
 ### Docker
 
@@ -33,12 +33,12 @@
   * `npm run docker:start`
   * `yarn docker:start`
   * `docker run -d -p 8080:8080 hapi-rest-proxy`
-4. Make your REST calls over http://localhost:8080?url=YOUR_URL
+4. Make your REST calls over http://localhost:8080/?url=YOUR_URL
 
 ## Example
 
 ```
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET "http://localhost:8080?url=http://api.fixer.io/latest"
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET "http://localhost:8080/?url=http://api.fixer.io/latest"
 ```
 
 ## Contributing

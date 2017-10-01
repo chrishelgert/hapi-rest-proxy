@@ -30,16 +30,16 @@
     "proxy"
   ],
   "dependencies": {
-    "boom": "^5.2.0",
-    "hapi": "^16.5.0",
-    "inert": "^4.2.0",
-    "request": "^2.81.0",
-    "request-promise-native": "^1.0.4",
+    "boom": "^6.0.0",
+    "hapi": "^16.6.2",
+    "inert": "^4.2.1",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5",
     "tinytime": "^0.2.6"
   },
   "devDependencies": {
     "husky": "^0.14.3",
-    "jest": "^21.0.1",
+    "jest": "^21.2.1",
     "snazzy": "^7.0.0",
     "standard": "^10.0.3"
   },

@@ -32,7 +32,7 @@
   "dependencies": {
     "boom": "^6.0.0",
     "hapi": "^16.6.2",
-    "inert": "^4.2.1",
+    "inert": "^5.0.0",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5",
     "tinytime": "^0.2.6"

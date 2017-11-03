@@ -31,7 +31,7 @@
   ],
   "dependencies": {
     "boom": "^6.0.0",
-    "hapi": "^16.6.2",
+    "hapi": "^17.0.0",
     "inert": "^4.2.1",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5",

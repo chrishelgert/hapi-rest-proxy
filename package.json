@@ -30,9 +30,9 @@
     "proxy"
   ],
   "dependencies": {
-    "boom": "^6.0.0",
-    "hapi": "^16.6.2",
-    "inert": "^4.2.1",
+    "boom": "^7.1.1",
+    "hapi": "^17.0.2",
+    "inert": "^5.0.1",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5",
     "tinytime": "^0.2.6"

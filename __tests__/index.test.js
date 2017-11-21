@@ -1,5 +1,6 @@
 jest.mock('request-promise-native')
 
+const { setTimeout } = require('timers')
 const tt = require('tinytime')
 const template = tt('{YYYY}-{Mo}-{DD} {H}:{mm}:{ss}')
 
@@ -25,11 +26,12 @@ const expectedHeaders = {
 
 describe('hapi-rest-proxy', () => {
   const testDate = new Date(1494178965528)
+  let Hapi
   let server
   let rp
 
   function setup (startSuccess = true, requestError) {
-    const Hapi = require('hapi')
+    Hapi = require('hapi')
 
     rp = require('request-promise-native')
     rp.mockImplementation(() => new Promise((resolve, reject) => {
@@ -41,9 +43,8 @@ describe('hapi-rest-proxy', () => {
     }))
 
     server = {
-      connection: jest.fn(),
       info: { uri: 'http://localhost:8080' },
-      register: jest.fn(),
+      register: jest.fn(() => new Promise(resolve => resolve())),
       route: jest.fn(),
       start: jest.fn(() => new Promise((resolve, reject) => {
         if (startSuccess) {
@@ -77,7 +78,7 @@ describe('hapi-rest-proxy', () => {
     test('sets the connection with the default port', () => {
       setup()
 
-      expect(server.connection).toHaveBeenCalledWith({
+      expect(Hapi.Server).toHaveBeenCalledWith({
         port: '8080',
         routes: { 'cors': true }
       })
@@ -87,7 +88,7 @@ describe('hapi-rest-proxy', () => {
       process.env.PORT = '9999'
       setup()
 
-      expect(server.connection).toHaveBeenCalledWith({
+      expect(Hapi.Server).toHaveBeenCalledWith({
         port: '9999',
         routes: { 'cors': true }
       })
@@ -98,19 +99,27 @@ describe('hapi-rest-proxy', () => {
     test('listens for requests on "/"', () => {
       setup()
 
-      const call = server.route.mock.calls[0][0]
+      setTimeout(() => {
+        const call = server.route.mock.calls[0][0]
 
-      expect(call.method).toBe('*')
-      expect(call.path).toBe('/')
+        expect(call.method).toBe('*')
+        expect(call.path).toBe('/')
+      }, 1)
     })
 
     describe('handler method', () => {
       let handler
 
       describe('success handling', () => {
-        beforeEach(() => {
+        beforeEach(async () => {
           setup()
-          handler = server.route.mock.calls[0][0].handler
+
+          await new Promise(resolve => {
+            setTimeout(() => {
+              handler = server.route.mock.calls[0][0].handler
+              resolve()
+            }, 1)
+          })
         })
 
         test('replies the information page, if called without url', () => (
@@ -254,10 +263,16 @@ describe('hapi-rest-proxy', () => {
       })
 
       describe('error handling', () => {
-        test('delegates the statuscode', () => {
+        test('delegates the statuscode', async () => {
           setup(true, { statusCode: 404, statusMessage: 'page not found' })
 
-          return server.route.mock.calls[0][0].handler(
+          const handler = await new Promise(resolve => {
+            setTimeout(() => {
+              resolve(server.route.mock.calls[0][0].handler)
+            }, 1)
+          })
+
+          return handler(
             {
               method: 'get',
               query: { url: 'https://www.i-want-to-test.com/api' },
@@ -275,10 +290,16 @@ describe('hapi-rest-proxy', () => {
             })
         })
 
-        test('returns statusCode 500 if it is not a request error', () => {
+        test('returns statusCode 500 if it is not a request error', async () => {
           setup(true, new Error('test'))
 
-          return server.route.mock.calls[0][0].handler(
+          const handler = await new Promise(resolve => {
+            setTimeout(() => {
+              resolve(server.route.mock.calls[0][0].handler)
+            }, 1)
+          })
+
+          return handler(
             {
               method: 'get',
               query: { url: 'https://www.i-want-to-test.com/api' },
@@ -296,10 +317,16 @@ describe('hapi-rest-proxy', () => {
             })
         })
 
-        test('returns statusCode 400 if the url param is empty', () => {
+        test('returns statusCode 400 if the url param is empty', async () => {
           setup()
 
-          return server.route.mock.calls[0][0].handler(
+          const handler = await new Promise(resolve => {
+            setTimeout(() => {
+              resolve(server.route.mock.calls[0][0].handler)
+            }, 1)
+          })
+
+          return handler(
             {
               method: 'get',
               query: { url: '' },
@@ -321,25 +348,34 @@ describe('hapi-rest-proxy', () => {
   })
 
   describe('start', () => {
-    test('calls console.info with the server url', () => {
+    test('calls console.info with the server url', async () => {
       setup()
 
-      return server.start()
-        .then(() => {
-          expect(console.info).toHaveBeenCalledWith('Server running at:', 'http://localhost:8080')
-        })
+      await new Promise(resolve => {
+        setTimeout(() => {
+          server.start()
+            .then(() => {
+              expect(console.info).toHaveBeenCalledWith('Server running at:', 'http://localhost:8080')
+            })
+
+          resolve()
+        }, 1)
+      })
     })
 
-    test('calls consle.error if a wild error occurs', () => {
+    test('calls consle.error if a wild error occurs', async () => {
       setup(false)
 
-      return server.start()
-        .then(() => {
-          expect(true).toBeFalsy()
-        })
-        .catch(() => {
-          expect(console.error).toHaveBeenCalledWith('There was an error starting the server')
-        })
+      await new Promise(resolve => {
+        setTimeout(() => resolve(), 1)
+      })
+
+      try {
+        await server.start()
+        expect(true).toBeFalsy()
+      } catch (err) {
+        expect(console.error.mock.calls[0][0]).toBe('There was an error starting the server')
+      }
     })
   })
 })

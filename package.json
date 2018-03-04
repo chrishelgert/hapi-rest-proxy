@@ -41,7 +41,7 @@
     "husky": "^0.14.3",
     "jest": "^21.2.1",
     "snazzy": "^7.0.0",
-    "standard": "^10.0.3"
+    "standard": "^11.0.0"
   },
   "jest": {
     "collectCoverage": true

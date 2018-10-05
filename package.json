@@ -9,8 +9,7 @@
     "test": "npm run lint && jest",
     "lint": "standard --verbose | snazzy",
     "docker:build": "docker build -t hapi-rest-proxy .",
-    "docker:start": "docker start -p 8080:8080 hapi-rest-proxy",
-    "prepush": "npm test"
+    "docker:start": "docker start -p 8080:8080 hapi-rest-proxy"
   },
   "author": "chrishelgert",
   "repository": {
@@ -50,5 +49,10 @@
     "env": [
       "jest"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm test"
+    }
   }
 }

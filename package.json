@@ -9,8 +9,7 @@
     "test": "npm run lint && jest",
     "lint": "standard --verbose | snazzy",
     "docker:build": "docker build -t hapi-rest-proxy .",
-    "docker:start": "docker start -p 8080:8080 hapi-rest-proxy",
-    "prepush": "npm test"
+    "docker:start": "docker start -p 8080:8080 hapi-rest-proxy"
   },
   "author": "chrishelgert",
   "repository": {
@@ -30,18 +29,18 @@
     "proxy"
   ],
   "dependencies": {
-    "boom": "^7.1.1",
-    "hapi": "^17.0.2",
-    "inert": "^5.0.1",
-    "request": "^2.83.0",
+    "boom": "^7.2.0",
+    "hapi": "^17.6.0",
+    "inert": "^5.1.0",
+    "request": "^2.88.0",
     "request-promise-native": "^1.0.5",
     "tinytime": "^0.2.6"
   },
   "devDependencies": {
-    "husky": "^0.14.3",
-    "jest": "^22.4.2",
-    "snazzy": "^7.0.0",
-    "standard": "^11.0.0"
+    "husky": "^1.1.1",
+    "jest": "^23.6.0",
+    "snazzy": "^8.0.0",
+    "standard": "^12.0.1"
   },
   "jest": {
     "collectCoverage": true
@@ -50,5 +49,10 @@
     "env": [
       "jest"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm test"
+    }
   }
 }

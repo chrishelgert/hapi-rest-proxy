@@ -38,7 +38,7 @@
 ## Example
 
 ```
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET "http://localhost:8080/?url=http://api.fixer.io/latest"
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET "http://localhost:8080/?url=https://api.github.com"
 ```
 
 ## Contributing

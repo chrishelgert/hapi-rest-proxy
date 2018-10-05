@@ -76,7 +76,7 @@ const getUrlFromQuery = (query) => {
         if (err.statusCode) {
           log(method, err.statusCode, uri)
 
-          return Boom.create(err.statusCode, err.statusMessage, uri)
+          return new Boom(err.statusMessage, { statusCode: err.statusCode, data: uri })
         } else {
           log(method, 500, uri)
 

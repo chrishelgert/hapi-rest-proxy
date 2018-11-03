@@ -1455,9 +1455,9 @@ handlebars@^4.0.3:
   optionalDependencies:
     uglify-js "^3.1.4"
 
-hapi@^17.6.0:
-  version "17.6.0"
-  resolved "https://registry.yarnpkg.com/hapi/-/hapi-17.6.0.tgz#158a2276253a8de727be678c4daeb1f73929e588"
+hapi@^17.6.3:
+  version "17.6.3"
+  resolved "https://registry.yarnpkg.com/hapi/-/hapi-17.6.3.tgz#d22a168e2b209924ab6c297367910fc9ba2803ba"
   dependencies:
     accept "3.x.x"
     ammo "3.x.x"
@@ -1467,8 +1467,8 @@ hapi@^17.6.0:
     catbox "10.x.x"
     catbox-memory "3.x.x"
     heavy "6.x.x"
-    hoek "5.x.x"
-    joi "13.x.x"
+    hoek "6.x.x"
+    joi "14.x.x"
     mimos "4.x.x"
     podium "3.x.x"
     shot "4.x.x"
@@ -1554,6 +1554,10 @@ heavy@6.x.x:
 hoek@5.x.x:
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-5.0.4.tgz#0f7fa270a1cafeb364a4b2ddfaa33f864e4157da"
+
+hoek@6.x.x:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/hoek/-/hoek-6.0.1.tgz#15ae90f8d30ad114e2feabe4967567014a783078"
 
 home-or-tmp@^2.0.0:
   version "2.0.0"
@@ -2278,6 +2282,14 @@ joi@13.x.x:
   resolved "https://registry.yarnpkg.com/joi/-/joi-13.7.0.tgz#cfd85ebfe67e8a1900432400b4d03bbd93fb879f"
   dependencies:
     hoek "5.x.x"
+    isemail "3.x.x"
+    topo "3.x.x"
+
+joi@14.x.x:
+  version "14.0.4"
+  resolved "https://registry.yarnpkg.com/joi/-/joi-14.0.4.tgz#f066f79330f6bd6f3dda243be6d2c211f83a5f9b"
+  dependencies:
+    hoek "6.x.x"
     isemail "3.x.x"
     topo "3.x.x"
 
